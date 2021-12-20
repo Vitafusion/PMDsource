@@ -1,50 +1,10 @@
-  
-q.find <- function(res,q){
-  res.temp <- res[res!=0]
-  q.temp <- quantile(res.temp,q)
-  
-  if(length(which(res==q.temp))>1){
-    q.addr <- which(res==q.temp)[1]
-  }
-  else{
-    q.addr <- which(res==q.temp)
-  }
-
-  if(length(q.addr)==0){
-    dis <- abs(res.temp-q.temp)
-    temp.addr <- which(dis==min(dis))[1]
-    q.addr <- which(res==res.temp[temp.addr])[1]
-  }
-  return(q.addr)
-}
-
-
-p.matrix <- function(n,m){
-  p <- matrix(0,nrow = n,ncol = m,byrow = T)
-  for (i in 1:n) {
-    r = runif(m)
-    r = r/sum(r) #generate row
-    r[1:(m-1)] = round(r[1:(m-1)],3)
-    while(sum(r[1:(m-1)])>1){
-        r = runif(m)
-        r = r/sum(r) #generate row
-        r[1:(m-1)] = round(r[1:(m-1)],3)
-    }
-    r[m] = 1-sum(r[1:(m-1)])
-    p[i,] = r
-  }
-  return(p)
-}
-
-
-
-library(poissonmulti)
+library(PoissonMultinomial)
 
 K <- 100
 m <- 3
 n <- c(1:10)
 N <- length(n)
-b <- c(10, 10^2, 10^3, 10^5)
+b <- c(10, 10^5, 10^7)
 results <- matrix(0,nrow = 1 ,ncol = 9)
 results <- as.data.frame(results)
 colnames(results) <- c("n","m","B","max","err.max","per.75","err.75","per.50","err.50")
@@ -52,7 +12,16 @@ temp <- results
 temp2 <- temp
 
 
-print("b from 10^1 to 10^5")
+args <- commandArgs(TRUE)
+if(length(args) > 0) 
+    for(i in 1:length(args)) 
+        eval(parse(text=args[[i]]))
+
+## print seed
+cat("covariates index: ", covidx, "\n", sep="")
+cat("seed is ", seed, "\n", sep="")
+
+
 
 
 for (j in 1:length(b)) {
