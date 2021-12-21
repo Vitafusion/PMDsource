@@ -1,3 +1,10 @@
+
+############################################# 
+#  Accuracy Test Result For The SIM Method  #
+#############################################
+
+
+
 library(poissonmulti)
 source("simulation_fun.R")
 K <- 100

@@ -1,3 +1,11 @@
+
+
+############################################ 
+# Collecting Test Data For The SIM Method  #
+############################################
+
+
+
 # find the saved .RData files
 files <- list.files("./", pattern="simulation_[1-30]*.RData")
 

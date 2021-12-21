@@ -53,15 +53,9 @@ make.data.groups = function(dat, groups_number,category_name=c("setosa","versico
 
 cal_pmatrix = function(parm, x_mat, cat_number){
   x_mat = as.matrix(x_mat)
-  
   n = ncol(x_mat) - 1
-  #x_mat = cbind(matrix(1, nrow = nrow(x_mat),ncol = 1), x_mat)
-  
   m = cat_number
   parm = matrix(parm,n+1,m-1, byrow=T)
-  
-  #P = matrix(0, nrow = nrow(x_mat), ncol = category_number)
-  
   P = exp(x_mat%*%parm)/(rowSums(exp(x_mat%*%parm))+1)
   P = cbind(P,1/(rowSums(exp(x_mat%*%parm))+1))
   for(i in 1:nrow(P)){

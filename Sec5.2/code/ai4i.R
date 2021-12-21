@@ -58,7 +58,6 @@ h2 <- ai4i[which((ai4i$HDF==1 | ai4i$PWF==1)&(ai4i$TWF==0 & ai4i$OSF==0)),]
 h3 <- setdiff(ai4i,rbind(h1,h2))
 mat.hist <- matrix(c(nrow(h1), nrow(h2), nrow(h3)), nrow=1, byrow = T)
 colnames(mat.hist) <- c('TWF_OSF','HDF_PWF','other')
-plot(mat.hist[1,])
 
 
 t1 <- mat.hist[1,]
@@ -94,36 +93,14 @@ for (i in 1:nrow(rule.group)) {
 
 
 
-covariates <- c("Air temperature [K]", "Process temperature [K]", "Rotational speed [rpm]", "Torque [Nm]")
-seed <- 1
-covidx=c(1,2,3,4)
+# Use "Air temperature [K]", "Rotational speed [rpm]" as covariates
+covariates <- c("Air temperature [K]", "Rotational speed [rpm]")
 # category number 3
 m <- 3
 
-## read in the command line arguments
-## run with: R CMD BATCH '--args seed=1 covidx=c(1,2,3,4,5)' ai4i.R
-args <- commandArgs(TRUE)
-if(length(args) > 0) 
-    for(i in 1:length(args)) 
-        eval(parse(text=args[[i]]))
-
-## print seed
-cat("covariates index: ", covidx, "\n", sep="")
-cat("seed is ", seed, "\n", sep="")
 
 
-covname <- c()
-for(i in 1:length(covidx)){
-  if(covidx[i]==0) {
-    covname <- NA
-  } else { 
-    covname <- c(covname, covariates[covidx[i]])
-  }
-}
-
-cat("covname: ", covname, "\n", sep="")
-
-
+covname <- covariates
 
 library(PoissonMultinomial)
 f = function(parm){
