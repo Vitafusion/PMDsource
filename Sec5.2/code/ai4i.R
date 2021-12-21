@@ -69,6 +69,9 @@ mat <- as.data.frame(mat)
 mat$t1 <- as.numeric(mat$t1)
 colnames(mat) <- c('counts', 'category')
 
+
+
+
 library(ggplot2)
 ggplot(mat, aes(category, counts)) +
   geom_bar(stat = 'identity')   
