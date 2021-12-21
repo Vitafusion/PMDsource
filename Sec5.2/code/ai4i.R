@@ -10,6 +10,8 @@
 ##############################################################################
 # data prepare
 
+
+source("Sec5.2/code/ai4i_fun.R")
 raw.ai4i = read.table(file = 'Sec5.2/data/ai4i2020.csv',sep = ',')
 colname.ai4i <- raw.ai4i[1,]
 colnames(raw.ai4i) <- c('UDI', 'Product ID', 'Type', 
@@ -135,96 +137,46 @@ op
 h <- op$hessian
 hinv <- solve(h)
 
-if(any(diag(hinv) < 0)){
-  parm <- op$par
-  op <- optim(
-  parm,
-  f,
-  method = "Nelder-Mead",
-  hessian = T,
-  control = list(trace = T,maxit = 30000)
-)
-} else {
-  save(op,h,hinv, file='ai4i_7.RData')
-}
-
 
 h <- op$hessian
 hinv <- solve(h)
-if(any(diag(hinv) < 0)){
+
+while(any(diag(hinv)<0)){
   parm <- op$par
   op <- optim(
-  parm,
-  f,
-  method = "Nelder-Mead",
-  hessian = T,
-  control = list(trace = T,maxit = 30000)
-)
-} else {
-  save(op,h,hinv, file='ai4i_6.RData')
+    parm,
+    f,
+    method = "Nelder-Mead",
+    hessian = T,
+    control = list(trace = T,maxit = 30000)
+  )
+  h <- op$hessian
+  hinv <- solve(h)
 }
 
 
+save(op, file='ai4i.RData')
 
-h <- op$hessian
-hinv <- solve(h)
-if(any(diag(hinv) < 0)){
-  parm <- op$par
-  op <- optim(
-  parm,
-  f,
-  method = "Nelder-Mead",
-  hessian = T,
-  control = list(trace = T,maxit = 30000)
-)
-} else {
-  save(op,h,hinv, file='ai4i_5.RData')
-}
+# estimated beta
+beta.hat <- op$par
+
+# the hessian and inverse of hessian
+H <- op$hessian
+H.inv <- solve(H)
 
 
-h <- op$hessian
-hinv <- solve(h)
-if(any(diag(hinv) < 0)){
-  parm <- op$par
-  op <- optim(
-  parm,
-  f,
-  method = "Nelder-Mead",
-  hessian = T,
-  control = list(trace = T,maxit = 30000)
-)
-} else {
-  save(op,h,hinv, file='ai4i_4.RData')
-}
+# se of beta
+
+se <- sqrt(diag(H.inv))
+
+# 0.95 CI
+left.CI <- beta.hat - 1.96*se
+right.CI <- beta.hat + 1.96*se
 
 
-
-
-# #parm <- c(7.142795, -3.243091,  1.927554,  3.688145, -2.688194,  1.608610)
-
-# # estimated beta
-# beta.hat <- op$par
-
-# # the hessian and inverse of hessian
-# H <- op$hessian
-# H.inv <- solve(H)
-
-
-# # se of beta
-
-# se <- sqrt(diag(H.inv))
-
-# # 0.95 CI
-# left.CI <- beta.hat - 1.96*se
-# right.CI <- beta.hat + 1.96*se
-
-
-# # calculate p matrix for all groups
-# pp = list()
-# covariate_name = c("Air temperature [K]",
-#                    "Process temperature [K]",
-#                    "Rotational speed [rpm]",
-#                    "Torque [Nm]")
+# calculate p matrix for all groups
+pp = list()
+covariate_name = c("Air temperature [K]","Rotational speed [rpm]")
 category_number = 3
 for(i in 1:length(groups)) {
   x = groups[[i]]
@@ -235,15 +187,9 @@ for(i in 1:length(groups)) {
   
 }
 
-# # P matrix for group 1, 5 and 8
-# pp[[1]]
-# pp[[5]]
-# pp[[8]]
-
-
-# save results
-
-# expr <- paste0('ai4i_', seed, '.RData')
-# save(op, beta.hat, H, file=expr)
+# P matrix for group 1, 5 and 8
+pp[[1]]
+pp[[5]]
+pp[[8]]
 
 
