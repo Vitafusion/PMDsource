@@ -19,7 +19,7 @@ q.find <- function(res,q){
 }
 
 
-# Generating P matrix
+# generating P matrix
 p.matrix <- function(n,m){
   p <- matrix(0,nrow = n,ncol = m,byrow = T)
   for (i in 1:n) {
@@ -37,6 +37,42 @@ p.matrix <- function(n,m){
   return(p)
 }
 
+
+# compute accuracy
+simulation.accuracy <- function(n,m,b,K){
+  results <- matrix(NA,nrow = 1 ,ncol = 9)
+  results <- as.data.frame(results)
+  colnames(results) <- c("n","m","B","max","err.max","per.95","err.95","per.90","err.90")
+  results$`n` <- 10*n
+  results$`m` <- m
+  results$B <- b
+
+  temp <- as.data.frame(matrix(0,nrow = 1 ,ncol = 6))
+  colnames(temp) <- c("max","err.max","per.95","err.95","per.90","err.90")
+
+  for(k in 1:K){
+        pp <- p.matrix(10*n,m)
+        res0 <- pmd(pp)
+        res1 <- pmd(pp, method = "simulation", t=b)
+        
+        index.max <- q.find(res0,1)
+        index.95 <- q.find(res0,0.95)
+        index.90 <-  q.find(res0,0.90)
+        err.max <- abs(res0[index.max] - res1[index.max])
+        err.95 <- abs(res0[index.95] - res1[index.95])
+        err.90 <- abs(res0[index.90] - res1[index.90])
+        temp$max <- temp$max + res0[index.max]
+        temp$err.max <- temp$err.max + err.max
+        temp$`per.95` <- temp$`per.95` + res0[index.95]
+        temp$err.95 <- temp$err.95 + err.95
+        temp$`per.90` <- temp$`per.90` + res0[index.90]
+        temp$err.90 <- temp$err.90 + err.90
+  }
+  temp <- temp/K
+  results[,4:9] <- temp
+
+  return(results)
+}
 
 
 
