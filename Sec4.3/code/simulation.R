@@ -1,7 +1,9 @@
 library(poissonmulti)
-
+source("simulation_fun.R")
 K <- 100
 m <- 3
+b <- 10
+
 
 args <- commandArgs(TRUE)
 if(length(args) > 0) 
@@ -9,13 +11,22 @@ if(length(args) > 0)
         eval(parse(text=args[[i]]))
 
 ## print seed
-cat("i: ", i, "\n", sep="")
-cat("B is ", b, "\n", sep="")
+cat("seed: ", seed, "\n", sep="")
+
+n <- seed
 
 
-n <- i
-res <- simulation.accuracy(n, m, b, K)
-save(res, file=paste("sim_", i, "_", b, ".RData", sep=""))
+if(seed > 10 && seed <= 20){
+  b <- 10^5
+  n <- seed - 10
+} else if(seed > 20){
+  b <- 10^7
+  n <- seed -20
+}
+
+
+result <- simulation.accuracy(n, m, b, K)
+save(result, file=paste("sim_", seed, ".RData", sep=""))
 
 
 
