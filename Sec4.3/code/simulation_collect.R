@@ -7,7 +7,7 @@
 
 
 # find the saved .RData files
-files <- list.files("./", pattern="simulation_[1-30]*.RData")
+files <- list.files("./", pattern="sim_[1-30]*.RData")
 
 
 

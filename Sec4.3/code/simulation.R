@@ -31,6 +31,8 @@ if(seed > 10 && seed <= 20){
   n <- seed -20
 }
 
+cat("n:", n, "\n", sep="")
+cat("B:", b, "\n", sep="")
 
 result <- simulation.accuracy(n, m, b, K)
 save(result, file=paste("sim_", seed, ".RData", sep=""))
