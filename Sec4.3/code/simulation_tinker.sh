@@ -31,5 +31,5 @@ echo "$( date ): Finished simulation"
 
 
 echo "$( date ): Starting collecting"
- R CMD BATCH simulation_collect.R simulation_collect_R.out
+ R CMD BATCH simulation_collect.R simulation_collect.Rout
 echo "$( date ): Finished collecting"
