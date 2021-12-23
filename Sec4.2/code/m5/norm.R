@@ -5,7 +5,7 @@
 
 
 library(PoissonMultinomial)
-source("norm_fun.R")
+source("../norm_fun.R")
 
 
 args <- commandArgs(TRUE)
