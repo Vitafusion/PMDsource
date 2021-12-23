@@ -1,0 +1,20 @@
+
+## module load fftw
+##
+##FFTW3_CPPFLAG=-I/opt/apps/intel17_0/fftw/3.3.5/include
+##FFTW3_CFLAG=-I/opt/apps/intel17_0/fftw/3.3.5/include
+##GSL_CFLAG=-I/opt/apps/intel17_0/gsl/2.4/include
+
+##FFTW3_LIB=-L/opt/apps/intel17_0/fftw/3.3.5/lib -lfftw3
+##GSL_LIB=-L/opt/apps/intel17_0/gsl/2.4/lib -lgsl -lgslcblas
+
+
+## Tinkercliffs modules
+## module load R
+
+FFTW3_CPPFLAG=-I/apps/easybuild/software/tinkercliffs-rome/FFTW/3.3.9-gompi-2021a/include
+FFTW3_CFLAG=-I/apps/easybuild/software/tinkercliffs-rome/FFTW/3.3.9-gompi-2021a/include
+GSL_CFLAG=-I/apps/easybuild/software/tinkercliffs-rome/GSL/2.7-GCC-10.3.0/include
+
+FFTW3_LIB=-L/apps/easybuild/software/tinkercliffs-rome/FFTW/3.3.9-gompi-2021a/lib -lfftw3
+GSL_LIB=-L/apps/easybuild/software/tinkercliffs-rome/GSL/2.7-GCC-10.3.0/lib -lgsl -lgslcblas
