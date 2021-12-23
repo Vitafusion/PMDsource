@@ -98,3 +98,25 @@ base_breaks <- function(n = 10){
 
 # scale function
 scaleFUN <- function(x) sprintf("%.4f", x)
+
+
+# plot normal accuracy
+norm.plot <- function(dat, m, n1, n2){
+  mm <- m
+  dat %>% filter(m==mm) %>% filter(n>=n1 & n<=n2) %>%ggplot(aes(x=n, y=mae)) + 
+    geom_path(aes(color=method, linetype=method)) + 
+    scale_y_continuous(trans = 'log10', breaks = base_breaks()) +labs(subtitle = paste("m=",mm)) + 
+    ylab("MAE") + theme(plot.subtitle = element_text(hjust = 0.5)) +
+    scale_color_manual(name="Method",
+                       labels=c("NA", "Baseline"),
+                       values=c("blue","red")) +
+    scale_linetype_manual(name="Method",
+                          labels=c("NA", "Baseline"),
+                          values=c("solid", "dashed")) + 
+    theme(axis.text.x = element_text(face="bold", 
+                                     size=8),
+          axis.text.y = element_text(face="bold", 
+                                     size=8),
+          axis.title=element_text(size=10,face="bold")) 
+}
+
