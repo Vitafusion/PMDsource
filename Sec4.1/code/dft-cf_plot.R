@@ -23,13 +23,13 @@ p1 <- dft.mae.plot(dat.bino)
 p2 <- dft.tae.plot(dat.bino)
 
 setEPS()
-postscript("bino_mae.eps")
+postscript("Sec4.1/plotbino_mae.eps")
 p1
 dev.off()
 
 
 setEPS()
-postscript("bino_tae.eps")
+postscript("Sec4.1/plotbino_tae.eps")
 p2
 dev.off()
 
@@ -43,13 +43,13 @@ p4 <- dft.tae.plot(dat.poi)
 
 
 setEPS()
-postscript("poi_mae.eps")
+postscript("Sec4.1/plot/poi_mae.eps")
 p3
 dev.off()
 
 
 setEPS()
-postscript("poi_tae.eps")
+postscript("Sec4.1/plotpoi_tae.eps")
 p4
 dev.off()
 

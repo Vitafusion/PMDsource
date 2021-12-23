@@ -1,3 +1,6 @@
+####################################
+# Computing Accuracy For NA Method #
+####################################
 
 
 
@@ -22,16 +25,20 @@ if(m==7){
 }
 
 
-
+# initialize
 results <- matrix(0, nrow = 1, ncol = 4)
 results <- as.data.frame(results)
 colnames(results) <- c("n", "m", "MAE", "baseline")
 
+
+# compute mae and baseline
 for(i in 1:n){
   res <- norm.accuracy(multi*i, m, K)
   results <- rbind(results,res)
 }
 
+
+# remove the first row
 results <- results[-1,]
 
 save(results, file=paste("norm_", m, "_", seed, ".RData", sep=""))
