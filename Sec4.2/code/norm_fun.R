@@ -87,3 +87,14 @@ norm.accuracy <- function(n, m, K){
 
   return(results)
 }
+
+
+# breaks functions
+base_breaks <- function(n = 10){
+  function(x) {
+    axisTicks(log10(range(x, na.rm = TRUE)), log = TRUE, n = n)
+  }
+}
+
+# scale function
+scaleFUN <- function(x) sprintf("%.4f", x)
