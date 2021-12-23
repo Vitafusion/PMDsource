@@ -24,4 +24,4 @@ for(i in 1:length(files)){
 res <- res/length(files)
 cat("\n")
 
-write.table(res, file = "norm.txt", sep = "\t")
+write.table(res, file = "norm_m5.txt", sep = "\t")

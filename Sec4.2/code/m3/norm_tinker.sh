@@ -16,10 +16,10 @@ module load R
 export MKL_NUM_THREADS=2
 
 #number of r processes to run
-ncopies=100
-k=10
-m=7
-n=5
+ncopies=10
+k=500
+m=3
+n=10
 
 echo "$( date ): Starting norm"
 
