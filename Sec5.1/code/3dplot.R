@@ -1,4 +1,4 @@
-load("res.RData")
+load("../data/res.RData")
 
 
 #build a dataframe to contain the result computed from dpmd
@@ -42,7 +42,7 @@ z <- matrix(0, nrow=11, ncol=11)
 result.mat <- matrix('tie', nrow=11, ncol=11)
 for(i in 1:nrow(z)){
   for (j in 1:ncol(z)) {
-    z[i,j] <- res1[i,j]
+    z[i,j] <- res[i,j]
     x1 <- i-1
     x2 <- j-1
     x3 <- 10-x1-x2

@@ -9,13 +9,13 @@
 
 
 # load raw data
-dat = read.csv("Sec5.3/data/PMDpmat.csv", header = F)
+dat = read.csv("../data/PMDpmat.csv", header = F)
 
 library(PoissonMultinomial)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
-source("Sec5.3/code/confusion_fun.R")
+source("confusion_fun.R")
 
 
 # raw data manipulation

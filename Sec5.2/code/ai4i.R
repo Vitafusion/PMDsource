@@ -11,8 +11,8 @@
 # data prepare
 
 
-source("Sec5.2/code/ai4i_fun.R")
-raw.ai4i = read.table(file = 'Sec5.2/data/ai4i2020.csv',sep = ',')
+source("ai4i_fun.R")
+raw.ai4i = read.table(file = '../data/ai4i2020.csv',sep = ',')
 colname.ai4i <- raw.ai4i[1,]
 colnames(raw.ai4i) <- c('UDI', 'Product ID', 'Type', 
                         'Air temperature [K]', 'Process temperature [K]', 
