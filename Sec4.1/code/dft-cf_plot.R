@@ -8,11 +8,11 @@ library(dplyr)
 library(gridExtra)
 library(gtable)
 library(ggpubr)
-source("Sec4.1/code/dft-cf_fun.R")
+source("dft-cf_fun.R")
 
 # load data
-dat.bino <- read.table("Sec4.1/data/binomial.txt")
-dat.poi <- read.table("Sec4.1/data/poibiom.txt")
+dat.bino <- read.table("../data/binomial.txt")
+dat.poi <- read.table("../data/poibiom.txt")
 
 
 

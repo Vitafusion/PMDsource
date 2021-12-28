@@ -12,13 +12,13 @@ library(gtable)
 library(ggpubr)
 library(reshape2)
 
-source("Sec4.2/code/norm_fun.R")
+source("norm_fun.R")
 
 
 # load data
-m3 <- read.table("Sec4.2/data/norm_m3.txt", sep="\t")
-m5 <- read.table("Sec4.2/data/norm_m5.txt", sep="\t")
-m7 <- read.table("Sec4.2/data/norm_m7.txt", sep="\t")
+m3 <- read.table("../data/norm_m3.txt", sep="\t")
+m5 <- read.table("../data/norm_m5.txt", sep="\t")
+m7 <- read.table("../data/norm_m7.txt", sep="\t")
 
 # data reformat
 dat.norm <- rbind(m3,m5,m7)
