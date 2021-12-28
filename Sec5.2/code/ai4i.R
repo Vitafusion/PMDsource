@@ -120,6 +120,8 @@ f = function(parm){
 
 # optim to find estimates for betas, m categories and k covariates
 # so beta(including intercep) will be a (m-1)*(k+1) matrix
+# this optimization is time consuming and the results are saved in 
+# the folder Section5.2/data/ai4i.RData
 if(is.na(covname[1])){ 
   parm <- rep(1,2)
 } else { 
@@ -158,8 +160,8 @@ while(any(diag(hinv)<0)){
 }
 
 
-save(op, file='ai4i.RData')
-
+# save(op, file='ai4i.RData')
+load("../data/ai4i.RData")
 # estimated beta
 beta.hat <- op$par
 

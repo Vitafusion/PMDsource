@@ -55,12 +55,15 @@ ggplot(df, aes(x = n))+ geom_histogram() +
 
 
 # create marginal bars
+# the following code is time consuming and the results
+# are saved in the folder ../data/marginal
 outA = (marginal_bar(pmat, "A"))
 outB = (marginal_bar(pmat, "B"))
 outC = (marginal_bar(pmat, type = "C"))
 outD = (marginal_bar(pmat, "D"))
 
-save(outA, outB,outC,outD,file = "marginal")
+# save(outA, outB,outC,outD,file = "marginal")
+load("../data/marginal")
 
 # combine all marginal bars
 out = as.data.frame(rbind(outA, outB, outC, outD))
