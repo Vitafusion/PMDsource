@@ -49,6 +49,8 @@ for(i in 1:11)
   }
 }
 
+rownames(mat1)=0:10
+colnames(mat1)=0:10
 
 # 2D plot
 par(mar=c(2,4,4,2))
