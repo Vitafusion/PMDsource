@@ -163,10 +163,10 @@ while(any(diag(hinv)<0)){
 # save(op, file='ai4i.RData')
 load("../data/ai4i.RData")
 # estimated beta
-beta.hat <- op$par
+beta.hat <- op2$par
 
 # the hessian and inverse of hessian
-H <- op$hessian
+H <- op2$hessian
 H.inv <- solve(H)
 
 
@@ -188,7 +188,7 @@ for(i in 1:length(groups)) {
   x = x[,covariate_name]
   x = as.matrix(x)
   x = cbind(matrix(1, nrow = nrow(x),ncol = 1), x)
-  pp[[i]]= cal_pmatrix(op$par, x, category_number)
+  pp[[i]]= cal_pmatrix(op2$par, x, category_number)
   
 }
 
